@@ -37,12 +37,20 @@ public class AuthController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest request) {
-        Optional<User> userOpt = userRepository.findByEmail(request.getEmail());
-        if (userOpt.isEmpty() || !passwordEncoder.matches(request.getPassword(), userOpt.get().getPassword())) {
-            return ResponseEntity.status(401).body("Invalid credentials");
+        try {
+            Optional<User> userOpt = userRepository.findByEmail(request.getEmail());
+            if (userOpt.isEmpty()) {
+                return ResponseEntity.status(401).body("User not found");
+            }
+            User user = userOpt.get();
+            if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+                return ResponseEntity.status(401).body("Invalid password");
+            }
+            String token = jwtUtil.generateToken(user.getEmail());
+            return ResponseEntity.ok(new AuthResponse(token, user.getEmail(), user.getName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Internal server error: " + e.getMessage());
         }
-        User user = userOpt.get();
-        String token = jwtUtil.generateToken(user.getEmail());
-        return ResponseEntity.ok(new AuthResponse(token, user.getEmail(), user.getName()));
     }
 }

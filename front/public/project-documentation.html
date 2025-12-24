@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MeduEase - Complete Project Documentation</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.8;
+      color: #1a1a2e;
+      background: #fff;
+      padding: 40px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    h1 { font-size: 2.5rem; color: #0d47a1; border-bottom: 4px solid #0d47a1; padding-bottom: 10px; margin-bottom: 20px; }
+    h2 { font-size: 1.8rem; color: #1565c0; margin-top: 40px; margin-bottom: 15px; border-left: 5px solid #1565c0; padding-left: 15px; }
+    h3 { font-size: 1.3rem; color: #1976d2; margin-top: 25px; margin-bottom: 10px; }
+    p { margin-bottom: 12px; text-align: justify; }
+    ul, ol { margin-left: 25px; margin-bottom: 15px; }
+    li { margin-bottom: 8px; }
+    .highlight { background: #e3f2fd; padding: 15px 20px; border-radius: 8px; margin: 15px 0; border-left: 4px solid #1976d2; }
+    .code-block { background: #263238; color: #aed581; padding: 15px; border-radius: 8px; font-family: 'Consolas', monospace; margin: 15px 0; overflow-x: auto; font-size: 0.9rem; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; }
+    th, td { border: 1px solid #ccc; padding: 12px; text-align: left; }
+    th { background: #1976d2; color: white; }
+    tr:nth-child(even) { background: #f5f5f5; }
+    .tag { display: inline-block; background: #e8f5e9; color: #2e7d32; padding: 3px 10px; border-radius: 15px; font-size: 0.85rem; margin: 2px; }
+    .tag-blue { background: #e3f2fd; color: #1565c0; }
+    .tag-orange { background: #fff3e0; color: #e65100; }
+    .section-box { background: #fafafa; border: 1px solid #e0e0e0; padding: 20px; border-radius: 10px; margin: 20px 0; }
+    .flow-step { display: flex; align-items: center; margin: 10px 0; }
+    .flow-step .num { background: #1976d2; color: white; width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; font-weight: bold; }
+    .divider { border-top: 2px dashed #ccc; margin: 30px 0; }
+    @media print {
+      body { padding: 20px; }
+      h2 { page-break-before: auto; }
+      .section-box { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>MeduEase - Generic Medicine Finder</h1>
+  <p><strong>Project Type:</strong> Full Stack Web Application</p>
+  <p><strong>Purpose:</strong> Help users find affordable generic alternatives to expensive branded medicines</p>
+
+  <div class="highlight">
+    <strong>One Line Summary:</strong> MeduEase is an e-commerce platform where users can search for any branded medicine (like Crocin, Dolo 650) and find its cheaper generic alternatives from Jan Aushadhi, Dava India, and Zeelabs pharmacies.
+  </div>
+
+  <!-- ============ SDLC PHASES ============ -->
+  <h2>1. Software Development Life Cycle (SDLC)</h2>
+
+  <h3>1.1 Requirement Analysis Phase</h3>
+  <div class="section-box">
+    <p><strong>Problem Identified:</strong></p>
+    <ul>
+      <li>Branded medicines are 5-10x more expensive than generic alternatives</li>
+      <li>Common people don't know that "Dolo 650" and "Paracetamol 650mg" are same medicine</li>
+      <li>No easy platform to find cheap generic alternatives</li>
+      <li>Jan Aushadhi stores exist but people don't know what's available there</li>
+    </ul>
+    <p><strong>Functional Requirements:</strong></p>
+    <ul>
+      <li>User should be able to search any branded medicine name</li>
+      <li>System should show salt composition of that medicine</li>
+      <li>System should list all generic alternatives with prices</li>
+      <li>User should be able to add medicines to cart and place order</li>
+      <li>User authentication (login/signup) required for cart</li>
+    </ul>
+    <p><strong>Non-Functional Requirements:</strong></p>
+    <ul>
+      <li>Response time should be less than 2 seconds</li>
+      <li>System should handle 1000+ concurrent users</li>
+      <li>Passwords must be encrypted</li>
+      <li>API should be secured with JWT tokens</li>
+    </ul>
+  </div>
+
+  <h3>1.2 Design Phase</h3>
+  <div class="section-box">
+    <p><strong>Architecture Design:</strong> 3-Tier Architecture</p>
+    <ul>
+      <li><strong>Presentation Layer:</strong> React.js frontend</li>
+      <li><strong>Business Logic Layer:</strong> Spring Boot backend</li>
+      <li><strong>Data Layer:</strong> MongoDB + CSV files</li>
+    </ul>
+    
+    <p><strong>Design Patterns Used:</strong></p>
+    <ul>
+      <li><strong>MVC Pattern:</strong> Model (Java classes) - View (React) - Controller (REST APIs)</li>
+      <li><strong>Repository Pattern:</strong> CartRepository, UserRepository for database access</li>
+      <li><strong>Service Layer Pattern:</strong> Business logic separated in Service classes</li>
+      <li><strong>Singleton Pattern:</strong> MedicineService loads CSV once and keeps in memory</li>
+      <li><strong>Context Pattern:</strong> AuthContext.jsx manages global auth state in React</li>
+    </ul>
+
+    <p><strong>Database Design:</strong></p>
+    <ul>
+      <li>NoSQL (MongoDB) chosen for flexibility with nested documents</li>
+      <li>Collections: users, carts, orders, medicines</li>
+      <li>Cart contains embedded array of CartItems (denormalized for speed)</li>
+    </ul>
+
+    <p><strong>UI/UX Design:</strong></p>
+    <ul>
+      <li>Tailwind CSS for responsive design</li>
+      <li>Mobile-first approach</li>
+      <li>Clean search-focused homepage</li>
+      <li>Color scheme: Blue (trust) + Green (health) + White (clean)</li>
+    </ul>
+  </div>
+
+  <h3>1.3 Development Phase</h3>
+  <div class="section-box">
+    <p><strong>Frontend Development:</strong></p>
+    <ul>
+      <li>React 18 with functional components and hooks</li>
+      <li>Redux Toolkit for state management</li>
+      <li>Axios for API calls</li>
+      <li>React Router for navigation</li>
+    </ul>
+    
+    <p><strong>Backend Development:</strong></p>
+    <ul>
+      <li>Spring Boot 3.x with Maven</li>
+      <li>REST API design following best practices</li>
+      <li>JWT for stateless authentication</li>
+      <li>Jsoup for web scraping</li>
+    </ul>
+  </div>
+
+  <h3>1.4 Testing Phase</h3>
+  <div class="section-box">
+    <ul>
+      <li><strong>Unit Testing:</strong> JUnit for backend services</li>
+      <li><strong>API Testing:</strong> Postman collection for all endpoints</li>
+      <li><strong>Frontend Testing:</strong> React Testing Library</li>
+      <li><strong>Manual Testing:</strong> Cross-browser testing (Chrome, Firefox, Edge)</li>
+    </ul>
+  </div>
+
+  <!-- ============ TECH STACK ============ -->
+  <h2>2. Technology Stack (Detailed)</h2>
+  
+  <h3>Frontend Technologies</h3>
+  <table>
+    <tr><th>Technology</th><th>Version</th><th>Purpose</th></tr>
+    <tr><td>React.js</td><td>18.x</td><td>UI component library, virtual DOM for fast rendering</td></tr>
+    <tr><td>Redux Toolkit</td><td>1.9.x</td><td>Global state management (cart, search results)</td></tr>
+    <tr><td>Tailwind CSS</td><td>3.x</td><td>Utility-first CSS framework for styling</td></tr>
+    <tr><td>Axios</td><td>1.x</td><td>HTTP client for API calls</td></tr>
+    <tr><td>React Router</td><td>6.x</td><td>Client-side routing</td></tr>
+  </table>
+
+  <h3>Backend Technologies</h3>
+  <table>
+    <tr><th>Technology</th><th>Version</th><th>Purpose</th></tr>
+    <tr><td>Spring Boot</td><td>3.2.x</td><td>Backend framework, auto-configuration</td></tr>
+    <tr><td>Spring Security</td><td>6.x</td><td>Authentication and authorization</td></tr>
+    <tr><td>Spring Data MongoDB</td><td>4.x</td><td>MongoDB integration</td></tr>
+    <tr><td>JWT (jjwt)</td><td>0.9.1</td><td>JSON Web Token for auth</td></tr>
+    <tr><td>Jsoup</td><td>1.15.x</td><td>HTML parsing for web scraping</td></tr>
+    <tr><td>BCrypt</td><td>-</td><td>Password hashing</td></tr>
+    <tr><td>Maven</td><td>3.9.x</td><td>Build tool and dependency management</td></tr>
+  </table>
+
+  <h3>Database</h3>
+  <table>
+    <tr><th>Technology</th><th>Purpose</th></tr>
+    <tr><td>MongoDB</td><td>NoSQL database for users, carts, orders</td></tr>
+    <tr><td>CSV Files</td><td>Medicine catalog (3300+ medicines from 3 sources)</td></tr>
+  </table>
+
+  <!-- ============ WEB SCRAPING ============ -->
+  <h2>3. Web Scraping Implementation</h2>
+
+  <h3>3.1 Why Web Scraping?</h3>
+  <div class="section-box">
+    <p>We have 200+ branded medicines mapped locally. But there are 10,000+ branded medicines in India. We can't manually map all of them.</p>
+    <p><strong>Solution:</strong> If brand not found in local map, scrape 1mg.com to get salt composition dynamically.</p>
+  </div>
+
+  <h3>3.2 Technology Used: Jsoup</h3>
+  <div class="section-box">
+    <p><strong>Jsoup</strong> is a Java library for working with real-world HTML. It provides:</p>
+    <ul>
+      <li>Fetch HTML from URLs</li>
+      <li>Parse HTML using DOM, CSS selectors</li>
+      <li>Extract and manipulate data</li>
+      <li>Clean user-submitted HTML</li>
+    </ul>
+    
+    <p><strong>Maven Dependency:</strong></p>
+    <div class="code-block">
+&lt;dependency&gt;
+    &lt;groupId&gt;org.jsoup&lt;/groupId&gt;
+    &lt;artifactId&gt;jsoup&lt;/artifactId&gt;
+    &lt;version&gt;1.15.4&lt;/version&gt;
+&lt;/dependency&gt;
+    </div>
+  </div>
+
+  <h3>3.3 Scraping Logic (GenericFinderService.java)</h3>
+  <div class="code-block">
+// Step 1: Build search URL
+String searchUrl = "https://www.1mg.com/search/all?name=" + brandName;
+
+// Step 2: Fetch HTML page using Jsoup
+Document doc = Jsoup.connect(searchUrl)
+    .userAgent("Mozilla/5.0")  // Pretend to be browser
+    .timeout(10000)            // 10 second timeout
+    .get();
+
+// Step 3: Find medicine link from search results
+Element firstResult = doc.selectFirst("a.style__product-link");
+String medicineUrl = firstResult.attr("href");
+
+// Step 4: Fetch medicine detail page
+Document medicineDoc = Jsoup.connect(medicineUrl).get();
+
+// Step 5: Extract salt composition using CSS selector
+Element saltElement = medicineDoc.selectFirst("div.saltInfo");
+String saltComposition = saltElement.text();
+
+// Example: "Paracetamol (650mg)"
+  </div>
+
+  <h3>3.4 Scraping Flow Diagram</h3>
+  <div class="section-box">
+    <div class="flow-step"><div class="num">1</div><div>User searches "XYZ medicine" (not in local database)</div></div>
+    <div class="flow-step"><div class="num">2</div><div>GenericFinderService checks local HashMap → NOT FOUND</div></div>
+    <div class="flow-step"><div class="num">3</div><div>Jsoup fetches https://1mg.com/search?name=XYZ</div></div>
+    <div class="flow-step"><div class="num">4</div><div>Parse search results, get first medicine URL</div></div>
+    <div class="flow-step"><div class="num">5</div><div>Jsoup fetches medicine detail page</div></div>
+    <div class="flow-step"><div class="num">6</div><div>Extract salt composition using CSS selector</div></div>
+    <div class="flow-step"><div class="num">7</div><div>Search our CSV for medicines with same salt</div></div>
+    <div class="flow-step"><div class="num">8</div><div>Return generic alternatives to user</div></div>
+  </div>
+
+  <h3>3.5 Error Handling in Scraping</h3>
+  <div class="section-box">
+    <ul>
+      <li><strong>Timeout:</strong> If 1mg.com takes too long, return "Not found" gracefully</li>
+      <li><strong>No Results:</strong> If search returns empty, show message to user</li>
+      <li><strong>HTML Structure Change:</strong> If 1mg changes their HTML, scraping may break - fallback to local data</li>
+      <li><strong>Rate Limiting:</strong> Don't make too many requests, cache results</li>
+    </ul>
+  </div>
+
+  <!-- ============ ORIGINAL TECH STACK SECTION ============ -->
+  <h2>4. Project Folder Structure</h2>
+
+  <div class="code-block">
+MeduEase/
+├── frontend/                    # React Application
+│   ├── src/
+│   │   ├── components/          # All React Components
+│   │   │   ├── Navbar.jsx       # Navigation bar with search
+│   │   │   ├── GenericFinder.jsx # Main search component
+│   │   │   ├── Login.jsx        # Login form
+│   │   │   ├── Signup.jsx       # Registration form
+│   │   │   ├── CartPage.jsx     # Shopping cart
+│   │   │   ├── CheckoutPage.jsx # Checkout process
+│   │   │   ├── OrdersPage.jsx   # Order history
+│   │   │   └── AuthContext.jsx  # Authentication state
+│   │   ├── App.js               # Main app component
+│   │   ├── store.js             # Redux store
+│   │   ├── cartSlice.js         # Cart state management
+│   │   └── searchSlice.js       # Search state management
+│   └── public/
+│       └── Category/            # Medicine CSV files
+│           ├── Jan Aushadhi.csv # 2400+ medicines
+│           ├── Dava India.csv   # 500+ medicines
+│           └── Zeelabs.csv      # 400+ medicines
+│
+└── backend/                     # Spring Boot Application
+    └── src/main/java/com/example/backend/
+        ├── controller/          # API Endpoints
+        │   ├── AuthController.java
+        │   ├── MedicineController.java
+        │   ├── CartController.java
+        │   └── OrderController.java
+        ├── service/             # Business Logic
+        │   ├── GenericFinderService.java
+        │   ├── MedicineService.java
+        │   ├── CartService.java
+        │   └── OrderService.java
+        ├── model/               # Data Models
+        │   ├── User.java
+        │   ├── Medicine.java
+        │   ├── Cart.java
+        │   ├── CartItem.java
+        │   └── Order.java
+        ├── repository/          # Database Access
+        │   ├── UserRepository.java
+        │   ├── MedicineRepository.java
+        │   ├── CartRepository.java
+        │   └── OrderRepository.java
+        └── security/
+            └── JwtUtil.java     # JWT Token handling
+  </div>
+
+  <!-- ============ HOW IT WORKS ============ -->
+  <h2>3. How The Application Works</h2>
+
+  <h3>Step-by-Step User Journey</h3>
+  
+  <div class="section-box">
+    <div class="flow-step"><div class="num">1</div><div><strong>User Opens Website</strong> - React app loads, Navbar.jsx renders with search bar</div></div>
+    <div class="flow-step"><div class="num">2</div><div><strong>User Searches Medicine</strong> - Types "Dolo 650" in GenericFinder.jsx search box</div></div>
+    <div class="flow-step"><div class="num">3</div><div><strong>API Call</strong> - Frontend calls GET /api/find-generic?brandName=Dolo 650</div></div>
+    <div class="flow-step"><div class="num">4</div><div><strong>Backend Processing</strong> - MedicineController receives request, calls GenericFinderService</div></div>
+    <div class="flow-step"><div class="num">5</div><div><strong>Salt Lookup</strong> - GenericFinderService finds salt composition: "Paracetamol 650mg"</div></div>
+    <div class="flow-step"><div class="num">6</div><div><strong>CSV Search</strong> - MedicineService searches all 3 CSV files for medicines with same salt</div></div>
+    <div class="flow-step"><div class="num">7</div><div><strong>Results Return</strong> - Returns list of generic alternatives with prices (Rs 5-15 vs Rs 30)</div></div>
+    <div class="flow-step"><div class="num">8</div><div><strong>User Adds to Cart</strong> - Clicks "Add to Cart", system checks if logged in</div></div>
+    <div class="flow-step"><div class="num">9</div><div><strong>Login Required</strong> - If not logged in, Login.jsx modal appears</div></div>
+    <div class="flow-step"><div class="num">10</div><div><strong>Cart Update</strong> - CartController.java adds item, saves to MongoDB via CartRepository</div></div>
+    <div class="flow-step"><div class="num">11</div><div><strong>Checkout</strong> - User places order, OrderService creates order and clears cart</div></div>
+  </div>
+
+  <!-- ============ BACKEND DETAILS ============ -->
+  <h2>4. Backend Architecture (Spring Boot)</h2>
+
+  <h3>4.1 Controllers (API Endpoints)</h3>
+  
+  <table>
+    <tr><th>Controller</th><th>Endpoint</th><th>Purpose</th></tr>
+    <tr><td>AuthController.java</td><td>POST /api/auth/login</td><td>User login, returns JWT token</td></tr>
+    <tr><td>AuthController.java</td><td>POST /api/auth/signup</td><td>New user registration</td></tr>
+    <tr><td>MedicineController.java</td><td>GET /api/find-generic</td><td>Find generic alternatives for a brand</td></tr>
+    <tr><td>MedicineController.java</td><td>GET /api/suggest-words</td><td>Live search suggestions</td></tr>
+    <tr><td>MedicineController.java</td><td>GET /api/search</td><td>Search medicines by name</td></tr>
+    <tr><td>CartController.java</td><td>GET /api/cart</td><td>Get user's cart</td></tr>
+    <tr><td>CartController.java</td><td>POST /api/cart/add</td><td>Add item to cart</td></tr>
+    <tr><td>CartController.java</td><td>DELETE /api/cart/remove/{id}</td><td>Remove item from cart</td></tr>
+    <tr><td>OrderController.java</td><td>POST /api/orders/create</td><td>Create new order from cart</td></tr>
+    <tr><td>OrderController.java</td><td>GET /api/orders</td><td>Get user's order history</td></tr>
+  </table>
+
+  <h3>4.2 Services (Business Logic)</h3>
+
+  <div class="section-box">
+    <h4>GenericFinderService.java - The Core Logic</h4>
+    <p>This is the most important service. It does:</p>
+    <ul>
+      <li><strong>Brand to Salt Mapping:</strong> Has a HashMap with 200+ brand medicines mapped to their salt compositions</li>
+      <li><strong>Example:</strong> "crocin" → ["paracetamol 500mg"], "combiflam" → ["ibuprofen 400mg", "paracetamol 325mg"]</li>
+      <li><strong>Web Scraping:</strong> If brand not found in local map, uses Jsoup to scrape salt info from 1mg.com</li>
+      <li><strong>Generic Search:</strong> Once salts are known, searches CSV files for matching generic medicines</li>
+    </ul>
+  </div>
+
+  <div class="section-box">
+    <h4>MedicineService.java - CSV Data Handler</h4>
+    <ul>
+      <li>Loads all 3 CSV files (Jan Aushadhi, Dava India, Zeelabs) into memory at startup</li>
+      <li>Creates an in-memory HashMap for fast searching</li>
+      <li>Builds a "salt index" - maps each salt to list of medicines containing it</li>
+      <li>Total: ~3300 medicines loaded with name, price, salt composition</li>
+    </ul>
+  </div>
+
+  <div class="section-box">
+    <h4>CartService.java</h4>
+    <ul>
+      <li>Manages user's shopping cart</li>
+      <li>Each user has one cart document in MongoDB</li>
+      <li>Handles add, remove, update quantity, clear cart operations</li>
+    </ul>
+  </div>
+
+  <div class="section-box">
+    <h4>OrderService.java</h4>
+    <ul>
+      <li>Creates orders from cart items</li>
+      <li>Clears cart after order is placed</li>
+      <li>Tracks order status: PENDING → CONFIRMED → DELIVERED</li>
+    </ul>
+  </div>
+
+  <h3>4.3 Security (JWT Authentication)</h3>
+  
+  <div class="highlight">
+    <strong>How JWT Works in MeduEase:</strong>
+    <ol>
+      <li>User logs in with email/password</li>
+      <li>AuthController verifies credentials against MongoDB</li>
+      <li>JwtUtil.java generates a JWT token (valid for 24 hours)</li>
+      <li>Token sent back to frontend, stored in localStorage</li>
+      <li>Every API call includes token in Authorization header</li>
+      <li>Backend validates token before processing request</li>
+    </ol>
+  </div>
+
+  <!-- ============ FRONTEND DETAILS ============ -->
+  <h2>5. Frontend Architecture (React)</h2>
+
+  <h3>5.1 Key Components</h3>
+
+  <table>
+    <tr><th>Component</th><th>File</th><th>What It Does</th></tr>
+    <tr><td>Navigation Bar</td><td>Navbar.jsx</td><td>Top bar with logo, search, cart icon, login button</td></tr>
+    <tr><td>Generic Finder</td><td>GenericFinder.jsx</td><td>Main search box - enter brand name, see generics</td></tr>
+    <tr><td>Login Form</td><td>Login.jsx</td><td>Email/password login with validation</td></tr>
+    <tr><td>Signup Form</td><td>Signup.jsx</td><td>New user registration</td></tr>
+    <tr><td>Auth Context</td><td>AuthContext.jsx</td><td>Manages login state across all components</td></tr>
+    <tr><td>Cart Page</td><td>CartPage.jsx</td><td>Shows cart items, total, checkout button</td></tr>
+    <tr><td>Orders Page</td><td>OrdersPage.jsx</td><td>Shows past orders with status</td></tr>
+    <tr><td>Medicine Card</td><td>ProductCard.jsx</td><td>Displays single medicine with price, add to cart</td></tr>
+  </table>
+
+  <h3>5.2 State Management (Redux)</h3>
+
+  <div class="code-block">
+// store.js - Redux Store Configuration
+const store = configureStore({
+  reducer: {
+    cart: cartReducer,      // Cart items and total
+    search: searchReducer,  // Search results and query
+  }
+});
+
+// cartSlice.js - Cart Actions
+- addToCart(item)      // Add medicine to cart
+- removeFromCart(id)   // Remove medicine
+- updateQuantity()     // Change quantity
+- clearCart()          // Empty cart after order
+
+// searchSlice.js - Search Actions
+- setSearchResults()   // Store API response
+- clearResults()       // Clear on new search
+  </div>
+
+  <h3>5.3 AuthContext.jsx - Authentication State</h3>
+
+  <div class="section-box">
+    <p>This React Context manages:</p>
+    <ul>
+      <li><strong>user:</strong> Current logged in user object (email, name)</li>
+      <li><strong>token:</strong> JWT token for API calls</li>
+      <li><strong>isAuthenticated:</strong> Boolean - is user logged in?</li>
+      <li><strong>login():</strong> Function to log in user</li>
+      <li><strong>logout():</strong> Function to log out, clears localStorage</li>
+    </ul>
+  </div>
+
+  <!-- ============ DATABASE ============ -->
+  <h2>6. Database Design (MongoDB)</h2>
+
+  <h3>6.1 Collections</h3>
+
+  <div class="code-block">
+// users collection
+{
+  "_id": "ObjectId",
+  "email": "user@example.com",
+  "password": "$2a$10$...",  // BCrypt hashed
+  "name": "John Doe",
+  "phone": "9876543210"
+}
+
+// carts collection
+{
+  "_id": "ObjectId",
+  "userEmail": "user@example.com",
+  "items": [
+    {
+      "medicineId": "med123",
+      "name": "Paracetamol 650mg",
+      "price": 12.50,
+      "quantity": 2,
+      "genericSource": "Jan Aushadhi"
+    }
+  ],
+  "totalItems": 2,
+  "totalAmount": 25.00
+}
+
+// orders collection
+{
+  "_id": "ObjectId",
+  "userEmail": "user@example.com",
+  "items": [...],  // Same as cart items
+  "totalAmount": 25.00,
+  "shippingAddress": "123 Main St, Delhi",
+  "paymentMethod": "COD",
+  "status": "CONFIRMED",
+  "createdAt": "2024-12-16T10:30:00Z"
+}
+
+// medicines collection (optional, mostly CSV)
+{
+  "_id": "ObjectId",
+  "name": "Paracetamol 650mg Tablets",
+  "salts": ["paracetamol"],
+  "price": 12.50,
+  "genericSource": "Jan Aushadhi",
+  "brand": false
+}
+  </div>
+
+  <!-- ============ KEY FEATURES ============ -->
+  <h2>7. Key Features Explained</h2>
+
+  <h3>7.1 Generic Medicine Finder (USP of Project)</h3>
+  <div class="section-box">
+    <p><strong>Problem:</strong> Branded medicines are expensive. Dolo 650 costs Rs 30, but same salt (Paracetamol 650mg) available for Rs 5 in Jan Aushadhi.</p>
+    <p><strong>Solution:</strong> User enters "Dolo 650" → System finds salt "Paracetamol 650mg" → Searches CSV for generics → Shows cheaper alternatives</p>
+    <p><strong>Data Sources:</strong></p>
+    <ul>
+      <li>Jan Aushadhi (Government scheme) - 2400+ medicines</li>
+      <li>Dava India - 500+ medicines</li>
+      <li>Zeelabs - 400+ medicines</li>
+    </ul>
+  </div>
+
+  <h3>7.2 Live Search Suggestions</h3>
+  <div class="section-box">
+    <p>As user types, system shows matching medicine names from CSV data.</p>
+    <p><strong>API:</strong> GET /api/suggest-words?q=dol</p>
+    <p><strong>Response:</strong> ["Dolo 650", "Dolopar", "Dolokind"]</p>
+  </div>
+
+  <h3>7.3 Web Scraping Fallback</h3>
+  <div class="section-box">
+    <p>If brand medicine not in local database, system scrapes 1mg.com using Jsoup library to find salt composition.</p>
+    <p>This ensures we can find generics for ANY medicine, not just ones in our local map.</p>
+  </div>
+
+  <!-- ============ API FLOW ============ -->
+  <h2>8. Complete API Flow Examples</h2>
+
+  <h3>Example 1: Search for Generic</h3>
+  <div class="code-block">
+Request:
+GET http://localhost:8080/api/find-generic?brandName=Crocin
+
+Response:
+{
+  "success": true,
+  "verified": true,
+  "brandedMedicine": "Crocin",
+  "saltComposition": ["paracetamol 500mg"],
+  "genericAlternatives": [
+    {
+      "name": "Paracetamol 500mg Tablets IP",
+      "price": 8.50,
+      "genericSource": "Jan Aushadhi"
+    },
+    {
+      "name": "Paracetamol 500mg",
+      "price": 10.00,
+      "genericSource": "Zeelabs"
+    }
+  ],
+  "totalAlternatives": 5,
+  "cheapestGeneric": "Paracetamol 500mg Tablets IP",
+  "cheapestPrice": 8.50
+}
+  </div>
+
+  <h3>Example 2: Add to Cart</h3>
+  <div class="code-block">
+Request:
+POST http://localhost:8080/api/cart/add
+Headers: Authorization: Bearer eyJhbGc...
+Body:
+{
+  "medicineId": "med123",
+  "name": "Paracetamol 500mg",
+  "price": 8.50,
+  "quantity": 2,
+  "genericSource": "Jan Aushadhi"
+}
+
+Response:
+{
+  "success": true,
+  "message": "Item added to cart successfully",
+  "cart": {...},
+  "totalItems": 2,
+  "totalAmount": 17.00
+}
+  </div>
+
+  <!-- ============ INTERVIEW QUESTIONS ============ -->
+  <h2>9. Common Interview Questions</h2>
+
+  <div class="section-box">
+    <h4>Q1: What problem does your project solve?</h4>
+    <p><strong>Answer:</strong> Branded medicines are 5-10x more expensive than generics with same salt composition. MeduEase helps users find affordable generic alternatives by matching salt compositions from Jan Aushadhi and other pharmacies.</p>
+  </div>
+
+  <div class="section-box">
+    <h4>Q2: Explain the architecture of your project.</h4>
+    <p><strong>Answer:</strong> It's a 3-tier architecture:</p>
+    <ul>
+      <li><strong>Presentation Layer:</strong> React frontend with Redux for state management</li>
+      <li><strong>Business Layer:</strong> Spring Boot backend with REST APIs</li>
+      <li><strong>Data Layer:</strong> MongoDB for user data, CSV files for medicine catalog</li>
+    </ul>
+  </div>
+
+  <div class="section-box">
+    <h4>Q3: How does authentication work?</h4>
+    <p><strong>Answer:</strong> JWT-based authentication. User logs in → Server generates JWT token → Token stored in browser localStorage → Every API request includes token in Authorization header → Server validates token using JwtUtil.java</p>
+  </div>
+
+  <div class="section-box">
+    <h4>Q4: How do you find generic alternatives?</h4>
+    <p><strong>Answer:</strong> Three-step process:</p>
+    <ol>
+      <li>Look up brand name in local HashMap (200+ brands mapped)</li>
+      <li>If not found, scrape 1mg.com using Jsoup to get salt composition</li>
+      <li>Search CSV files for medicines with matching salts, return sorted by price</li>
+    </ol>
+  </div>
+
+  <div class="section-box">
+    <h4>Q5: Why MongoDB instead of MySQL?</h4>
+    <p><strong>Answer:</strong> Cart and Order documents have nested items array. MongoDB's document model is natural fit. Also, medicine data is semi-structured (varying fields per source). NoSQL gives flexibility.</p>
+  </div>
+
+  <div class="section-box">
+    <h4>Q6: How is the search optimized?</h4>
+    <p><strong>Answer:</strong> All 3300 medicines loaded into memory at startup in a HashMap. Salt-based index also created. Search is O(1) lookup instead of database query. Very fast response times.</p>
+  </div>
+
+  <div class="section-box">
+    <h4>Q7: Explain web scraping in your project.</h4>
+    <p><strong>Answer:</strong> We use Jsoup library (Java HTML parser) to scrape 1mg.com. When user searches a brand not in our local database:</p>
+    <ol>
+      <li>Jsoup fetches 1mg search page with that brand name</li>
+      <li>We parse HTML using CSS selectors to find medicine link</li>
+      <li>Fetch medicine detail page</li>
+      <li>Extract salt composition from specific div</li>
+      <li>Use that salt to search our generic database</li>
+    </ol>
+  </div>
+
+  <div class="section-box">
+    <h4>Q8: What design patterns did you use?</h4>
+    <p><strong>Answer:</strong></p>
+    <ul>
+      <li><strong>MVC:</strong> Model (Java POJOs) - View (React) - Controller (REST APIs)</li>
+      <li><strong>Repository Pattern:</strong> Separate data access layer</li>
+      <li><strong>Service Layer:</strong> Business logic in services, not controllers</li>
+      <li><strong>Singleton:</strong> MedicineService loads CSV once at startup</li>
+      <li><strong>Context Pattern:</strong> AuthContext for global state in React</li>
+    </ul>
+  </div>
+
+  <div class="section-box">
+    <h4>Q9: How do you handle security?</h4>
+    <p><strong>Answer:</strong></p>
+    <ul>
+      <li><strong>Password:</strong> BCrypt hashing (one-way encryption)</li>
+      <li><strong>API Security:</strong> JWT tokens with 24-hour expiry</li>
+      <li><strong>CORS:</strong> Configured to allow only frontend origin</li>
+      <li><strong>Input Validation:</strong> All inputs validated before processing</li>
+    </ul>
+  </div>
+
+  <div class="section-box">
+    <h4>Q10: What challenges did you face?</h4>
+    <p><strong>Answer:</strong></p>
+    <ul>
+      <li><strong>Salt Matching:</strong> Different formats like "Paracetamol 500mg" vs "paracetamol" - solved with normalization</li>
+      <li><strong>Web Scraping:</strong> 1mg blocks bots - added User-Agent header to mimic browser</li>
+      <li><strong>CSV Parsing:</strong> Inconsistent data formats - wrote custom parser handling edge cases</li>
+      <li><strong>Performance:</strong> Loading 3300 medicines was slow - moved to in-memory HashMap</li>
+    </ul>
+  </div>
+
+  <div class="section-box">
+    <h4>Q11: What is Redux and why use it?</h4>
+    <p><strong>Answer:</strong> Redux is a state management library. In MeduEase:</p>
+    <ul>
+      <li>Cart state needs to be accessed from Navbar, CartPage, Checkout - all different components</li>
+      <li>Without Redux, we'd pass props through many levels (prop drilling)</li>
+      <li>Redux provides central store accessible from anywhere</li>
+      <li>Actions like addToCart, removeFromCart modify state predictably</li>
+    </ul>
+  </div>
+
+  <div class="section-box">
+    <h4>Q12: Explain the folder structure.</h4>
+    <p><strong>Answer:</strong> Standard layered architecture:</p>
+    <ul>
+      <li><strong>controller/</strong> - REST API endpoints (AuthController, CartController, etc.)</li>
+      <li><strong>service/</strong> - Business logic (GenericFinderService, CartService, etc.)</li>
+      <li><strong>repository/</strong> - Database access (UserRepository, CartRepository, etc.)</li>
+      <li><strong>model/</strong> - Data classes (User, Cart, Medicine, etc.)</li>
+      <li><strong>security/</strong> - JWT handling (JwtUtil.java)</li>
+    </ul>
+  </div>
+
+  <!-- ============ HOW TO RUN ============ -->
+  <h2>10. How to Run the Project</h2>
+
+  <div class="code-block">
+# Step 1: Start MongoDB
+mongod --dbpath /data/db
+
+# Step 2: Start Backend (Port 8080)
+cd backend
+mvn spring-boot:run
+
+# Step 3: Start Frontend (Port 3000)
+cd frontend
+npm start
+
+# Step 4: Open Browser
+http://localhost:3000
+  </div>
+
+  <div class="divider"></div>
+
+  <p style="text-align: center; color: #666; margin-top: 40px;">
+    <strong>MeduEase</strong> - Making Healthcare Affordable<br>
+    Built with React + Spring Boot + MongoDB
+  </p>
+
+</body>
+</html>

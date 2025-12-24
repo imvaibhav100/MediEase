@@ -2,7 +2,9 @@ const fs = require('fs');
 const csv = require('csv-parser');
 const { MongoClient } = require('mongodb');
 
-const uri = 'mongodb://localhost:27017';
+const localUri = 'mongodb://localhost:27017';
+const railwayUri = 'mongodb://mongo:FFrgwGPcEDedoeVhNoxSdVGlPAWpDPzX@mongodb.railway.internal:27017';
+const uri = process.env.USE_RAILWAY_DB === 'true' ? railwayUri : localUri;
 const dbName = 'pharmacydb';
 const collectionName = 'medicines';
 const csvFilePath = './MeduEase_master_database (1).csv';

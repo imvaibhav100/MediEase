@@ -1,7 +1,10 @@
 const { MongoClient } = require('mongodb');
 
 async function test() {
-    const client = new MongoClient('mongodb://localhost:27017');
+    const localUri = 'mongodb://localhost:27017';
+    const railwayUri = 'mongodb://mongo:FFrgwGPcEDedoeVhNoxSdVGlPAWpDPzX@mongodb.railway.internal:27017';
+    const uri = process.env.USE_RAILWAY_DB === 'true' ? railwayUri : localUri;
+    const client = new MongoClient(uri);
     await client.connect();
     const db = client.db('pharmacydb');
     

@@ -25,14 +25,25 @@ public class AuthController {
 
     @PostMapping("/signup")
     public ResponseEntity<?> signup(@RequestBody SignupRequest request) {
-        if (userRepository.existsByEmail(request.getEmail())) {
-            return ResponseEntity.badRequest().body("Email already exists");
+        try {
+            if (request.getEmail() == null || request.getEmail().isEmpty() ||
+                request.getPassword() == null || request.getPassword().isEmpty() ||
+                request.getName() == null || request.getName().isEmpty() ||
+                request.getPhone() == null || request.getPhone().isEmpty()) {
+                return ResponseEntity.badRequest().body("All fields are required");
+            }
+            if (userRepository.existsByEmail(request.getEmail())) {
+                return ResponseEntity.status(409).body("Email already exists");
+            }
+            String hashedPassword = passwordEncoder.encode(request.getPassword());
+            User user = new User(request.getEmail(), hashedPassword, request.getName(), request.getPhone());
+            userRepository.save(user);
+            String token = jwtUtil.generateToken(user.getEmail());
+            return ResponseEntity.ok(new AuthResponse(token, user.getEmail(), user.getName()));
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.status(500).body("Internal server error: " + e.getMessage());
         }
-        String hashedPassword = passwordEncoder.encode(request.getPassword());
-        User user = new User(request.getEmail(), hashedPassword, request.getName(), request.getPhone());
-        userRepository.save(user);
-        String token = jwtUtil.generateToken(user.getEmail());
-        return ResponseEntity.ok(new AuthResponse(token, user.getEmail(), user.getName()));
     }
 
     @PostMapping("/login")

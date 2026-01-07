@@ -3,7 +3,6 @@ services:
     name: MediEase-backend
     env: docker
     dockerfilePath: backend/Dockerfile
-    plan: free
     autoDeploy: true
 
   - type: web
@@ -11,5 +10,4 @@ services:
     env: static
     buildCommand: cd front && npm install && npm run build
     staticPublishPath: front/build
-    plan: free
     autoDeploy: true

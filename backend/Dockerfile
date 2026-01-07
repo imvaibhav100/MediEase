@@ -9,7 +9,8 @@ COPY pom.xml .
 COPY src src
 
 # Build the application (skip tests for faster container builds)
-RUN ./mvnw -DskipTests clean package
+# Make mvnw executable and run it
+RUN chmod +x ./mvnw && ./mvnw -DskipTests clean package
 
 # Runtime image
 FROM eclipse-temurin:17-jre

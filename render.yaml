@@ -1,15 +1,15 @@
 services:
   - type: web
-    name: pharmcure-backend
+    name: MeduEase-backend
     env: docker
     dockerfilePath: backend/Dockerfile
     plan: free
     autoDeploy: true
 
-  - type: static_site
-    name: pharmcure-front
-    rootDir: front
-    buildCommand: npm install && npm run build
-    publishPath: build
+  - type: web
+    name: MeduEase-front
+    env: static
+    buildCommand: cd front && npm install && npm run build
+    staticPublishPath: front/build
     plan: free
     autoDeploy: true

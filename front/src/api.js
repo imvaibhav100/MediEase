@@ -1,6 +1,10 @@
 import axios from "axios";
 
-const BACKEND_BASE = window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'https://mediease-backend-production.up.railway.app';
+// Allow overriding backend base URL via environment variable at build time
+const ENV_BASE = process.env.REACT_APP_API_URL;
+const BACKEND_BASE = ENV_BASE && ENV_BASE.trim().length > 0
+  ? ENV_BASE.trim()
+  : (window.location.hostname === 'localhost' ? 'http://localhost:8080' : 'https://mediease-backend-production.up.railway.app');
 const API_URL = `${BACKEND_BASE}/api/auth`;
 const CART_API_URL = `${BACKEND_BASE}/api/cart`;
 const ORDER_API_URL = `${BACKEND_BASE}/api/orders`;

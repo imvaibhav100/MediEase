@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 HELP.md
 target/
 .mvn/wrapper/maven-wrapper.jar
@@ -31,3 +32,40 @@ build/
 
 ### VS Code ###
 .vscode/
+=======
+# Node
+node_modules/
+.env
+npm-debug.log
+yarn-error.log
+
+# Java
+backend/target/
+*.class
+*.jar
+*.war
+*.iml
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Misc
+.idea/
+*.swp
+*.swo
+
+# Test coverage
+coverage/
+
+# Build
+build/
+dist/
+>>>>>>> c4c7bf56a8b97cae51b9839011eb4f9482146da7

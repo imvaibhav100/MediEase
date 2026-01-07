@@ -1,3 +1,4 @@
+import { BACKEND_BASE } from './api';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
@@ -6,7 +7,7 @@ export const fetchGenericMedicine = createAsyncThunk(
   async (name, { rejectWithValue }) => {
     try {
       // Use the new find-generic API that returns salt + alternatives properly
-      const genericRes = await axios.get(`/api/find-generic?brandName=${encodeURIComponent(name)}`);
+      const genericRes = await axios.get(`${BACKEND_BASE}/api/find-generic?brandName=${encodeURIComponent(name)}`);
       const data = genericRes.data;
       
       // Format for UI

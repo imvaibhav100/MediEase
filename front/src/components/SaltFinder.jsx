@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { BACKEND_BASE } from '../api';
 
 const SaltFinder = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -16,7 +17,7 @@ const SaltFinder = () => {
     
     try {
       // Call backend API which does web scraping from 1mg
-      const response = await axios.get(`http://localhost:8080/api/get-salt?brandName=${encodeURIComponent(searchTerm.trim())}`);
+      const response = await axios.get(`${BACKEND_BASE}/api/get-salt?brandName=${encodeURIComponent(searchTerm.trim())}`);
       
       if (response.data.found && response.data.saltComposition) {
         setResult({ 

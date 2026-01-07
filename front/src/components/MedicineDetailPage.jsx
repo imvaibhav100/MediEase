@@ -1,3 +1,4 @@
+import { BACKEND_BASE } from '../api';
 import React, { useEffect, useState } from "react";
 import { useParams, Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -138,7 +139,7 @@ export default function MedicineDetailPage() {
 
     // Try API as fallback
     axios
-      .get(`/api/find-generic?brandName=${encodeURIComponent(decodedName)}`)
+      .get(`${BACKEND_BASE}/api/find-generic?brandName=${encodeURIComponent(decodedName)}`)
       .then((res) => {
         if (res.data.success && res.data.genericAlternatives?.length > 0) {
           const alt = res.data.genericAlternatives[0];

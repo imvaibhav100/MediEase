@@ -1,3 +1,4 @@
+import { BACKEND_BASE } from '../api';
 import React, { useState } from "react";
 
 function MedicineSearch() {
@@ -14,7 +15,7 @@ function MedicineSearch() {
     setError("");
     setShowAlternatives(false);
     try {
-      const res = await fetch(`/api/search?query=${query}`);
+      const res = await fetch(`${BACKEND_BASE}/api/search?query=${encodeURIComponent(query)}`);
       if (!res.ok) {
         const errorText = await res.text();
         setError(errorText || "Medicine not found or could not be scraped.");
@@ -28,7 +29,7 @@ function MedicineSearch() {
       setShowAlternatives(true);
       // Fetch alternatives for first result
       if (data.length > 0) {
-        const altRes = await fetch(`/api/alternatives?brandName=${data[0].name}`);
+        const altRes = await fetch(`${BACKEND_BASE}/api/alternatives?brandName=${encodeURIComponent(data[0].name)}`);
         if (altRes.ok) {
           const altData = await altRes.json();
           setAlternatives(altData);

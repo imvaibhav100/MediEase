@@ -1,3 +1,4 @@
+import { BACKEND_BASE } from '../api';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addToCart } from '../cartSlice';
@@ -45,7 +46,7 @@ const GenericFinder = () => {
                 setLoadingMessage('Not found locally, searching 1mg.com...');
             }, 2000);
 
-            const response = await fetch(`/api/find-generic?brandName=${encodeURIComponent(brandName.trim())}`);
+            const response = await fetch(`${BACKEND_BASE}/api/find-generic?brandName=${encodeURIComponent(brandName.trim())}`);
             
             clearTimeout(scrapingTimer);
             

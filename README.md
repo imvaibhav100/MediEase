@@ -22,7 +22,7 @@ This project runs as two services on Render: a Java Spring Boot backend and a Re
 - `PORT` = auto-set by Render
 
 **Frontend (Render Dashboard):**
-- `REACT_APP_API_URL` = your backend URL (e.g., `https://pharmcure-backend.onrender.com`)
+- `REACT_APP_API_URL` = your backend URL (e.g., `https://MediEase-backend.onrender.com`)
 
 - Backend (Web Service):
 	- Type: Web Service
@@ -34,14 +34,14 @@ This project runs as two services on Render: a Java Spring Boot backend and a Re
 	- Root directory: `front`
 	- Build command: `npm install && npm run build`
 	- Publish directory: `build`
-	- Env vars: `REACT_APP_API_URL` → your backend URL (e.g., https://pharmcure-backend.onrender.com)
+	- Env vars: `REACT_APP_API_URL` → your backend URL (e.g., https://MediEase-backend.onrender.com)
 
 ### Using render.yaml (Blueprint)
 
 1. Push this repo to GitHub.
 2. In Render → New → Blueprint, select the repo. It will create:
-	 - `pharmcure-backend` (Docker web service, using backend/Dockerfile)
-	 - `pharmcure-front` (Static site from `front`)
+	 - `MediEase-backend` (Docker web service, using backend/Dockerfile)
+	 - `MediEase-front` (Static site from `front`)
 3. After backend deploys, open the frontend service → add env `REACT_APP_API_URL` = backend URL.
 4. Click “Clear cache & redeploy” for the frontend to rebuild with the env.
 

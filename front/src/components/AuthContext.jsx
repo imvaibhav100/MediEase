@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
       const { token, email: userEmail, name } = res.data;
       setUser({ email: userEmail, name, token });
       setIsAuthenticated(true);
-      localStorage.setItem("MeduEase_user", JSON.stringify({ email: userEmail, name, token }));
+      localStorage.setItem("MediEase_user", JSON.stringify({ email: userEmail, name, token }));
       showToast(`Login successful! Welcome back, ${name || userEmail.split("@")[0]}`);
       return true;
     } catch (err) {
@@ -32,7 +32,7 @@ export const AuthProvider = ({ children }) => {
   const logout = () => {
     setUser(null);
     setIsAuthenticated(false);
-    localStorage.removeItem("MeduEase_user");
+    localStorage.removeItem("MediEase_user");
     showToast("Logout successful!");
   };
 
@@ -59,7 +59,7 @@ export const AuthProvider = ({ children }) => {
       const { token, email: userEmail, name } = res.data;
       setUser({ email: userEmail, name, token });
       setIsAuthenticated(true);
-      localStorage.setItem("MeduEase_user", JSON.stringify({ email: userEmail, name, token }));
+      localStorage.setItem("MediEase_user", JSON.stringify({ email: userEmail, name, token }));
       showToast(`Signup successful! Welcome, ${name || userEmail.split("@")[0]}`);
       return true;
     } catch (err) {
@@ -70,7 +70,7 @@ export const AuthProvider = ({ children }) => {
 
   // Check for existing user on load
   React.useEffect(() => {
-    const savedUser = localStorage.getItem("MeduEase_user");
+    const savedUser = localStorage.getItem("MediEase_user");
     if (savedUser) {
       const userData = JSON.parse(savedUser);
       setUser(userData);

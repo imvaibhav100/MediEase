@@ -13,7 +13,7 @@ const SupportPage = () => {
   const [submitted, setSubmitted] = useState(false);
   const [chatOpen, setChatOpen] = useState(false);
   const [chatMessages, setChatMessages] = useState([
-    { type: 'bot', message: 'Hello! 👋 Welcome to MeduEase Support. How can I help you today?' }
+    { type: 'bot', message: 'Hello! 👋 Welcome to MediEase Support. How can I help you today?' }
   ]);
   const [chatInput, setChatInput] = useState('');
 
@@ -67,7 +67,7 @@ const SupportPage = () => {
     {
       icon: 'fa-envelope',
       title: 'Email Us',
-      value: 'support@MeduEase.in',
+      value: 'support@MediEase.in',
       subtext: 'Response within 24 hours',
       color: 'bg-blue-500'
     },
@@ -372,7 +372,7 @@ const SupportPage = () => {
                 <div className="space-y-3 text-sm">
                   <p className="flex items-start gap-2">
                     <i className="fas fa-map-marker-alt mt-1"></i>
-                    <span>MeduEase Healthcare Pvt. Ltd.<br/>123, Health Plaza, Sector 15<br/>New Delhi - 110001</span>
+                    <span>MediEase Healthcare Pvt. Ltd.<br/>123, Health Plaza, Sector 15<br/>New Delhi - 110001</span>
                   </p>
                   <p className="flex items-center gap-2">
                     <i className="fas fa-clock"></i>
@@ -483,7 +483,7 @@ const SupportPage = () => {
                 <i className="fas fa-headset"></i>
               </div>
               <div>
-                <h3 className="font-bold">MeduEase Support</h3>
+                <h3 className="font-bold">MediEase Support</h3>
                 <p className="text-xs text-white/80">● Online</p>
               </div>
             </div>

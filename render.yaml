@@ -1,13 +1,13 @@
 services:
   - type: web
-    name: MeduEase-backend
+    name: MediEase-backend
     env: docker
     dockerfilePath: backend/Dockerfile
     plan: free
     autoDeploy: true
 
   - type: web
-    name: MeduEase-front
+    name: MediEase-front
     env: static
     buildCommand: cd front && npm install && npm run build
     staticPublishPath: front/build

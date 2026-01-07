@@ -416,7 +416,7 @@ const Navbar = () => {
 						</span>
 						<span className="flex items-center">
 							<i className="fas fa-envelope mr-2"></i>
-							support@MeduEase.com
+							support@MediEase.com
 						</span>
 					</div>
 					<div className="flex items-center space-x-4">
@@ -439,12 +439,12 @@ const Navbar = () => {
 					<Link to="/" className="flex items-center space-x-3">
 						<img 
 							src="/images/logo.png" 
-							alt="MeduEase" 
+							alt="MediEase" 
 							className="w-16 h-16 rounded-xl shadow-lg object-cover"
 						/>
 						<div className="flex flex-col items-start">
 							<span className="text-2xl font-bold bg-gradient-to-r from-[#0057B8] to-[#00A6E3] bg-clip-text text-transparent tracking-wide">
-								MeduEase
+								MediEase
 							</span>
 							<span className="text-[10px] text-gray-500 font-medium">aapka apna sathii</span>
 						</div>

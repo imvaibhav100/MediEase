@@ -9,7 +9,7 @@ const Testimonials = () => {
       name: "Rajesh Kumar",
       location: "Mumbai",
       rating: 5,
-      text: "Excellent service! I saved over 80% on my monthly diabetes medicines. The quality is exactly the same as branded ones. Highly recommend MeduEase to everyone.",
+      text: "Excellent service! I saved over 80% on my monthly diabetes medicines. The quality is exactly the same as branded ones. Highly recommend MediEase to everyone.",
       image: "https://randomuser.me/api/portraits/men/1.jpg"
     },
     {
@@ -17,7 +17,7 @@ const Testimonials = () => {
       name: "Priya Sharma",
       location: "Delhi",
       rating: 5,
-      text: "Fast delivery and genuine medicines. My parents have been using generic medicines from MeduEase for 6 months now. Very satisfied with the quality and price.",
+      text: "Fast delivery and genuine medicines. My parents have been using generic medicines from MediEase for 6 months now. Very satisfied with the quality and price.",
       image: "https://randomuser.me/api/portraits/women/2.jpg"
     },
     {
@@ -25,7 +25,7 @@ const Testimonials = () => {
       name: "Dr. Amit Patel",
       location: "Ahmedabad",
       rating: 5,
-      text: "As a doctor, I recommend generic medicines to all my patients. MeduEase provides WHO-GMP certified medicines at affordable prices. Great initiative!",
+      text: "As a doctor, I recommend generic medicines to all my patients. MediEase provides WHO-GMP certified medicines at affordable prices. Great initiative!",
       image: "https://randomuser.me/api/portraits/men/3.jpg"
     },
     {
@@ -33,7 +33,7 @@ const Testimonials = () => {
       name: "Sunita Devi",
       location: "Jaipur",
       rating: 5,
-      text: "Very easy to order online. The prescription upload feature is very convenient. Medicines were delivered within 2 days. Thank you MeduEase!",
+      text: "Very easy to order online. The prescription upload feature is very convenient. Medicines were delivered within 2 days. Thank you MediEase!",
       image: "https://randomuser.me/api/portraits/women/4.jpg"
     },
     {
@@ -41,7 +41,7 @@ const Testimonials = () => {
       name: "Mohd. Imran",
       location: "Hyderabad",
       rating: 5,
-      text: "Best prices for generic medicines. I've been ordering from MeduEase for my family's monthly medicines. Saving almost ₹3000 every month!",
+      text: "Best prices for generic medicines. I've been ordering from MediEase for my family's monthly medicines. Saving almost ₹3000 every month!",
       image: "https://randomuser.me/api/portraits/men/5.jpg"
     }
   ];

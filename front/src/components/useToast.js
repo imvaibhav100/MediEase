@@ -3,11 +3,11 @@ import { useEffect } from "react";
 export default function useToast() {
   useEffect(() => {
     // Inject toast container styles only once
-    if (!document.getElementById("MeduEase-toast-styles")) {
+    if (!document.getElementById("MediEase-toast-styles")) {
       const style = document.createElement("style");
-      style.id = "MeduEase-toast-styles";
+      style.id = "MediEase-toast-styles";
       style.innerHTML = `
-        .MeduEase-toast {
+        .MediEase-toast {
           position: fixed;
           top: 2rem;
           right: 2rem;
@@ -25,9 +25,9 @@ export default function useToast() {
           align-items: center;
           gap: 0.75rem;
           opacity: 0.98;
-          animation: MeduEase-toast-in 0.4s cubic-bezier(.4,0,.2,1);
+          animation: MediEase-toast-in 0.4s cubic-bezier(.4,0,.2,1);
         }
-        @keyframes MeduEase-toast-in {
+        @keyframes MediEase-toast-in {
           0% { transform: translateY(-40px) scale(0.95); opacity: 0; }
           100% { transform: translateY(0) scale(1); opacity: 0.98; }
         }
@@ -38,7 +38,7 @@ export default function useToast() {
 
   function showToast(message) {
     const toast = document.createElement("div");
-    toast.className = "MeduEase-toast";
+    toast.className = "MediEase-toast";
     toast.innerHTML = `<i class='fas fa-check-circle text-2xl'></i> ${message}`;
     document.body.appendChild(toast);
     setTimeout(() => {

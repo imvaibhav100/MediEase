@@ -43,7 +43,7 @@ const WhyChooseUs = () => (
   <section className="py-12 px-4 bg-white">
     <div className="max-w-7xl mx-auto">
       <div className="text-center mb-10">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Why Choose MeduEase?</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-2">Why Choose MediEase?</h2>
         <p className="text-gray-500">India's most trusted generic medicine pharmacy</p>
       </div>
       

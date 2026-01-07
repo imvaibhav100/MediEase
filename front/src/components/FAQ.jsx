@@ -10,7 +10,7 @@ const FAQ = () => {
     },
     {
       question: "Are Generic Medicines safe and effective?",
-      answer: "Yes, absolutely! All generic medicines sold through MeduEase are approved by the Drug Controller General of India (DCGI) and manufactured in WHO-GMP certified facilities. They undergo the same rigorous quality testing as branded medicines."
+      answer: "Yes, absolutely! All generic medicines sold through MediEase are approved by the Drug Controller General of India (DCGI) and manufactured in WHO-GMP certified facilities. They undergo the same rigorous quality testing as branded medicines."
     },
     {
       question: "How much can I save with Generic Medicines?",

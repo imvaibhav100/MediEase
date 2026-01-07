@@ -11,7 +11,7 @@ const Footer = () => (
           </div>
           <div>
             <h3 className="text-xl font-bold mb-2">Download Our App</h3>
-            <p className="text-gray-400 text-sm mb-3">Get exclusive offers on the MeduEase App</p>
+            <p className="text-gray-400 text-sm mb-3">Get exclusive offers on the MediEase App</p>
             <div className="flex gap-3">
               <a href="#" className="bg-black px-4 py-2 rounded-lg flex items-center hover:bg-gray-800 transition-colors">
                 <i className="fab fa-google-play mr-2"></i>
@@ -102,7 +102,7 @@ const Footer = () => (
           <ul className="space-y-3 text-gray-400 text-sm">
             <li className="flex items-center">
               <i className="fas fa-envelope mr-3 text-[#0057B8]"></i>
-              <a href="mailto:support@MeduEase.in" className="hover:text-[#0057B8] transition-colors">support@MeduEase.in</a>
+              <a href="mailto:support@MediEase.in" className="hover:text-[#0057B8] transition-colors">support@MediEase.in</a>
             </li>
             <li className="flex items-center">
               <i className="fas fa-phone mr-3 text-[#0057B8]"></i>
@@ -151,10 +151,10 @@ const Footer = () => (
       {/* Copyright */}
       <div className="text-center text-gray-500 text-sm border-t border-gray-700 pt-6">
         <div className="flex items-center justify-center mb-3">
-          <span className="text-2xl font-bold text-[#0057B8] mr-2">MeduEase</span>
+          <span className="text-2xl font-bold text-[#0057B8] mr-2">MediEase</span>
           <span className="text-gray-400">- Generic Medicines at Best Prices</span>
         </div>
-        © 2025 MeduEase. All rights reserved. Made with <span className="text-red-400">❤</span> in India 🇮🇳
+        © 2025 MediEase. All rights reserved. Made with <span className="text-red-400">❤</span> in India 🇮🇳
       </div>
     </div>
   </footer>

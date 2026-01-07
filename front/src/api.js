@@ -11,7 +11,7 @@ const ORDER_API_URL = `${BACKEND_BASE}/api/orders`;
 
 // Helper to get auth header
 const getAuthHeader = () => {
-  const user = JSON.parse(localStorage.getItem('MeduEase_user') || '{}');
+  const user = JSON.parse(localStorage.getItem('MediEase_user') || '{}');
   return user.token ? { Authorization: `Bearer ${user.token}` } : {};
 };
 
